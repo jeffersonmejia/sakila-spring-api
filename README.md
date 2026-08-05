@@ -6,6 +6,11 @@ API REST para la gestión de películas, clientes, inventario, alquileres y devo
 
 Java 21 · Spring Boot 3 · Spring Data JPA · Spring Security + JWT · PostgreSQL · Flyway · Springdoc OpenAPI · Testcontainers · GitHub Actions.
 
+## Prerrequisitos
+
+- PostgreSQL 17 con la extensión `vector` (pgvector) instalada.
+- La base `sakila` se crea y se puebla ejecutando en orden los scripts de `.local/db/`: `001_schema.sql`, `002_seed.sql` y `003_users.sql`.
+
 ## Arquitectura
 
 API hexagonal (Ports & Adapters): el núcleo de negocio no depende de Spring, JPA, HTTP ni JWT; los adaptadores de entrada y salida dependen del dominio.
