@@ -29,7 +29,7 @@ flowchart TB
     N[JWT Filter · BCrypt · ADMIN / EMPLOYEE]
   end
 
-  subgraph adapters_in["adapter/in/web — Input"]
+  subgraph adapters_in["adapter/in/Application — Input"]
     D[REST Controllers]
     E[DTOs + Validation]
     F[Exception Handler]
@@ -42,7 +42,7 @@ flowchart TB
     H[Out Ports — Repositories]
   end
 
-  subgraph adapters_out["adapter/out/persistence — Output"]
+  subgraph adapters_out["adapter/out/Infraestructure — Output"]
     K[JPA Entities]
     L[Spring Data Repositories]
   end
