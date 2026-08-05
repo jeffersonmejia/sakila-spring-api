@@ -12,31 +12,38 @@ API hexagonal (Ports & Adapters): el núcleo de negocio no depende de Spring, JP
 
 ```mermaid
 flowchart TB
-  subgraph Users["Usuarios"]
-    A[Cliente]
-    B[Administrador ADMIN]
-    C[Empleado EMPLOYEE]
+  classDef userCls fill:#E3F2FD,stroke:#1565C0,color:#0D47A1,stroke-width:2px
+  classDef secCls fill:#FCE4EC,stroke:#C2185B,color:#880E4F,stroke-width:2px
+  classDef inCls fill:#FFF3E0,stroke:#EF6C00,color:#E65100,stroke-width:2px
+  classDef coreCls fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20,stroke-width:2px
+  classDef outCls fill:#F3E5F5,stroke:#8E24AA,color:#4A148C,stroke-width:2px
+  classDef dbCls fill:#FFFDE7,stroke:#F9A825,color:#F57F17,stroke-width:2px
+
+  subgraph Users["Users"]
+    A[Client]
+    B[Administrator ADMIN]
+    C[Employee EMPLOYEE]
   end
 
   subgraph security["security — JWT & Roles"]
     N[JWT Filter · BCrypt · ADMIN / EMPLOYEE]
   end
 
-  subgraph adapters_in["adapter/in/web — Entrada"]
-    D[Controllers REST]
+  subgraph adapters_in["adapter/in/web — Input"]
+    D[REST Controllers]
     E[DTOs + Validation]
     F[Exception Handler]
   end
 
-  subgraph core["domain — Núcleo de negocio"]
-    G[Puertos in — Casos de uso]
-    I[Servicios de dominio]
-    J[Modelos]
-    H[Puertos out — Repositorios]
+  subgraph core["domain — Business Core"]
+    G[In Ports — Use Cases]
+    I[Domain Services]
+    J[Models]
+    H[Out Ports — Repositories]
   end
 
-  subgraph adapters_out["adapter/out/persistence — Salida"]
-    K[Entidades JPA]
+  subgraph adapters_out["adapter/out/persistence — Output"]
+    K[JPA Entities]
     L[Spring Data Repositories]
   end
 
@@ -57,6 +64,13 @@ flowchart TB
   H --> L
   L --> K
   K --> M
+
+  class A,B,C userCls
+  class N secCls
+  class D,E,F inCls
+  class G,I,J,H coreCls
+  class K,L outCls
+  class M dbCls
 ```
 
 ## Ejecución local
