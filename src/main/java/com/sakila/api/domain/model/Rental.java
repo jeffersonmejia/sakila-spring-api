@@ -1,11 +1,11 @@
 package com.sakila.api.domain.model;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public record Rental(
         Integer id,
-        LocalDateTime rentalDate,
-        LocalDateTime returnDate,
+        Instant rentalDate,
+        Instant returnDate,
         Integer customerId,
         Integer inventoryId,
         String filmTitle,
