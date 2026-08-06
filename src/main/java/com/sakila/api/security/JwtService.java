@@ -21,11 +21,12 @@ import com.nimbusds.jose.jwk.source.ImmutableSecret;
 public class JwtService {
 
     private final SecretKey key;
-    private final long expirationMs;
+    private final long expirationMinutes;
 
-    public JwtService(@Value("${app.jwt.secret}") String secret, @Value("${app.jwt.expiration-ms}") long expirationMs) {
+    public JwtService(@Value("${app.jwt.secret}") String secret,
+            @Value("${app.jwt.expiration-minutes}") long expirationMinutes) {
         this.key = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
-        this.expirationMs = expirationMs;
+        this.expirationMinutes = expirationMinutes;
     }
 
     public String generate(String username, String role) {
@@ -34,7 +35,7 @@ public class JwtService {
                 .subject(username)
                 .claim("role", role)
                 .issuedAt(now)
-                .expiresAt(now.plusMillis(expirationMs))
+                .expiresAt(now.plus(expirationMinutes, java.time.temporal.ChronoUnit.MINUTES))
                 .build();
         JwtEncoder encoder = new NimbusJwtEncoder(new ImmutableSecret<>(key));
         return encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
