@@ -4,6 +4,10 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
+app:
+  docs:
+    public: true
+
 logging:
   level:
     org.hibernate.SQL: debug
