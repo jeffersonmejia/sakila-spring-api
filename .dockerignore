@@ -1,0 +1,6 @@
+.git
+.local
+.env
+.github
+target/*
+!target/sakila-api.jar
