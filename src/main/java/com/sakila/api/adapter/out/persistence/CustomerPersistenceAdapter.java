@@ -74,7 +74,7 @@ public class CustomerPersistenceAdapter implements CustomerRepository {
             StoreEntity store = jpaStore.getReferenceById(customer.storeId());
             AddressEntity address = jpaAddress.getReferenceById(customer.address().id());
             entity = new CustomerEntity(null, customer.firstName(), customer.lastName(), customer.email(),
-                    customer.active(), store, address);
+                    customer.active(), store, address, java.time.LocalDate.now());
         } else {
             entity = jpa.findById(customer.id())
                     .orElseThrow(() -> new com.sakila.api.common.exception.NotFoundException("Cliente no encontrado"));

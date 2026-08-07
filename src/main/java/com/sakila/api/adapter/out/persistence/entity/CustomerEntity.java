@@ -68,6 +68,12 @@ public class CustomerEntity {
         this.address = address;
     }
 
+    public CustomerEntity(Integer id, String firstName, String lastName, String email, Boolean active,
+            StoreEntity store, AddressEntity address, LocalDate createDate) {
+        this(id, firstName, lastName, email, active, store, address);
+        this.createDate = createDate;
+    }
+
     public Integer getId() {
         return id;
     }
