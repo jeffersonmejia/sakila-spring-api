@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.sakila.api.adapter.in.web.dto.ErrorResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
