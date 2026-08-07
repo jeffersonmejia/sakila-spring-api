@@ -44,7 +44,8 @@ public interface JpaReportRepository extends JpaRepository<PaymentEntity, Intege
     List<RevenueByCategory> revenueByCategory();
 
     @Query("""
-            select new com.sakila.api.domain.model.RentalsByMonth(function('to_char', r.rentalDate, 'YYYY-MM'), count(r))
+            select new com.sakila.api.domain.model.RentalsByMonth(
+                cast(function('to_char', r.rentalDate, 'YYYY-MM') as string), count(r))
             from RentalEntity r
             group by function('to_char', r.rentalDate, 'YYYY-MM')
             order by function('to_char', r.rentalDate, 'YYYY-MM')
