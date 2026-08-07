@@ -96,6 +96,10 @@ public class PgDumpBackupAdapter implements BackupStore {
             int slash = rest.indexOf('/');
             String hostPort = slash >= 0 ? rest.substring(0, slash) : rest;
             String database = slash >= 0 ? rest.substring(slash + 1) : "";
+            int query = database.indexOf('?');
+            if (query >= 0) {
+                database = database.substring(0, query);
+            }
             int colon = hostPort.lastIndexOf(':');
             if (colon >= 0) {
                 return new DbUrl(hostPort.substring(0, colon), Integer.parseInt(hostPort.substring(colon + 1)),
