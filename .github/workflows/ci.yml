@@ -32,7 +32,7 @@ jobs:
           sudo apt-get update -y
           yes | sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
           sudo apt-get install -y postgresql-client-17
-          sudo update-alternatives --set pg_dump /usr/lib/postgresql/17/bin/pg_dump
+          sudo ln -sf /usr/lib/postgresql/17/bin/pg_dump /usr/local/bin/pg_dump
           pg_dump --version
 
       - name: Build, unit tests, integration tests, coverage and JAR
